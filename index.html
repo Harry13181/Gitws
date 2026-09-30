@@ -1,115 +1,925 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harry | Mechanical Engineering Student</title>
+
+    <title>Harry | Mechanical Engineering Portfolio</title>
+
+    <style>
+
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1120;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 17, 32, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        nav {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at top right, #172554, transparent 40%),
+                #0b1120;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero-small {
+            color: #38bdf8;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 80px);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            max-width: 650px;
+            font-size: 18px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 24px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .secondary-btn:hover {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #111827;
+            padding: 20px;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+        }
+
+        .info-box strong {
+            color: #38bdf8;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #111827;
+            padding: 25px;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+
+        .skill-card p {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+        }
+
+        .project-number {
+            color: #38bdf8;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .project-card h3 {
+            margin: 10px 0;
+            font-size: 22px;
+        }
+
+        .project-card p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           EDUCATION
+        ========================= */
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .timeline-item {
+            background: #111827;
+            border-left: 3px solid #38bdf8;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .timeline-item span {
+            color: #38bdf8;
+            font-size: 14px;
+        }
+
+        .timeline-item h3 {
+            margin: 8px 0;
+        }
+
+        .timeline-item p {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+            background: #111827;
+            padding: 50px 30px;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+        }
+
+        .contact-box p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #020617;
+            color: #64748b;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Harry</h1>
-        <p>Mechanical Engineering Student</p>
 
-        <nav>
-            <a href="#about">About</a> |
-            <a href="#skills">Skills</a> |
-            <a href="#projects">Projects</a> |
-            <a href="#contact">Contact</a>
-        </nav>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <header>
+
+        <div class="container">
+
+            <nav>
+
+                <div class="logo">
+                    Harry.
+                </div>
+
+                <ul class="nav-links">
+
+                    <li><a href="#home">Home</a></li>
+
+                    <li><a href="#about">About</a></li>
+
+                    <li><a href="#skills">Skills</a></li>
+
+                    <li><a href="#projects">Projects</a></li>
+
+                    <li><a href="#education">Education</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
     </header>
 
-    <hr>
 
-    <!-- About -->
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
+    <section id="home">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <p class="hero-small">
+                    Hello, I'm
+                </p>
+
+                <h1>
+                    Harry <span>V.</span>
+                </h1>
+
+                <h2>
+                    Mechanical Engineering Student
+                </h2>
+
+                <p>
+                    I am passionate about mechanical design,
+                    CAD, manufacturing and engineering technology.
+                    I enjoy transforming ideas into practical solutions.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects"
+                       class="btn primary-btn">
+                        View Projects
+                    </a>
+
+                    <a href="#contact"
+                       class="btn secondary-btn">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT SECTION
+    ========================= -->
+
     <section id="about">
-        <h2>About Me</h2>
 
-        <p>
-            I am a Mechanical Engineering student interested in
-            mechanical design, CAD, manufacturing, and technology.
-        </p>
+        <div class="container">
 
-        <p>
-            I enjoy learning new technologies and working on
-            engineering projects.
-        </p>
+            <div class="section-title">
+
+                <h2>About Me</h2>
+
+                <p>
+                    A little about my background
+                </p>
+
+            </div>
+
+
+            <div class="about">
+
+                <div class="about-text">
+
+                    <p>
+                        I am a Mechanical Engineering student
+                        interested in design, manufacturing,
+                        engineering technology and innovation.
+                    </p>
+
+                    <p>
+                        I have experience working with CAD tools,
+                        engineering drawings and manufacturing
+                        concepts. I also explore programming and
+                        modern technology alongside my engineering studies.
+                    </p>
+
+                    <p>
+                        My goal is to continuously develop my
+                        technical skills and work on practical
+                        engineering projects.
+                    </p>
+
+                </div>
+
+
+                <div class="about-info">
+
+                    <div class="info-box">
+
+                        <strong>Degree</strong>
+
+                        Mechanical Engineering
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>College</strong>
+
+                        Sri Sairam Institute of Technology
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>Interests</strong>
+
+                        CAD & Design
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>Focus</strong>
+
+                        Engineering & Technology
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <hr>
 
-    <!-- Skills -->
+
+    <!-- =========================
+         SKILLS SECTION
+    ========================= -->
+
     <section id="skills">
-        <h2>Skills</h2>
 
-        <ul>
-            <li>SOLIDWORKS</li>
-            <li>Engineering Drawing</li>
-            <li>Manufacturing Processes</li>
-            <li>C Programming</li>
-            <li>Python Basics</li>
-            <li>Microsoft PowerPoint</li>
-        </ul>
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Technical Skills</h2>
+
+                <p>
+                    Technologies and tools I work with
+                </p>
+
+            </div>
+
+
+            <div class="skills">
+
+                <div class="skill-card">
+
+                    <h3>SOLIDWORKS</h3>
+
+                    <p>
+                        3D CAD modelling, assemblies
+                        and mechanical design.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Engineering Drawing</h3>
+
+                    <p>
+                        Technical drawings,
+                        dimensions and engineering standards.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Manufacturing</h3>
+
+                    <p>
+                        Understanding of manufacturing
+                        processes and production methods.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Programming</h3>
+
+                    <p>
+                        Basic knowledge of C programming
+                        and Python.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>3D Printing</h3>
+
+                    <p>
+                        Experience with FDM and SLA
+                        additive manufacturing.
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Technical Presentation</h3>
+
+                    <p>
+                        Technical documentation and
+                        engineering presentations.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <hr>
 
-    <!-- Projects -->
+
+    <!-- =========================
+         PROJECTS SECTION
+    ========================= -->
+
     <section id="projects">
-        <h2>Projects</h2>
 
-        <article>
-            <h3>Project 1</h3>
-            <p>
-                Description of your first project goes here.
-            </p>
-        </article>
+        <div class="container">
 
-        <article>
-            <h3>Project 2</h3>
-            <p>
-                Description of your second project goes here.
-            </p>
-        </article>
+            <div class="section-title">
 
-        <article>
-            <h3>Project 3</h3>
-            <p>
-                Description of your third project goes here.
-            </p>
-        </article>
+                <h2>Projects</h2>
+
+                <p>
+                    Selected engineering and technical projects
+                </p>
+
+            </div>
+
+
+            <div class="projects">
+
+
+                <div class="project-card">
+
+                    <span class="project-number">
+                        PROJECT 01
+                    </span>
+
+                    <h3>
+                        Mechanical CAD Design
+                    </h3>
+
+                    <p>
+                        A mechanical component designed
+                        using SOLIDWORKS with focus on
+                        modelling, dimensions and assembly.
+                    </p>
+
+                    <a href="#"
+                       class="project-link">
+                        View Project →
+                    </a>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <span class="project-number">
+                        PROJECT 02
+                    </span>
+
+                    <h3>
+                        Disaster Response Drone
+                    </h3>
+
+                    <p>
+                        A conceptual engineering project
+                        focused on using drone technology
+                        for disaster response applications.
+                    </p>
+
+                    <a href="#"
+                       class="project-link">
+                        View Project →
+                    </a>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <span class="project-number">
+                        PROJECT 03
+                    </span>
+
+                    <h3>
+                        3D Printing Project
+                    </h3>
+
+                    <p>
+                        Designed and prepared components
+                        for additive manufacturing using
+                        FDM and SLA technologies.
+                    </p>
+
+                    <a href="#"
+                       class="project-link">
+                        View Project →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
     </section>
 
-    <hr>
 
-    <!-- Education -->
+
+    <!-- =========================
+         EDUCATION SECTION
+    ========================= -->
+
     <section id="education">
-        <h2>Education</h2>
 
-        <h3>Bachelor of Engineering – Mechanical Engineering</h3>
-        <p>Sri Sairam Institute of Technology</p>
-        <p>2024 – 2028</p>
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Education & Experience</h2>
+
+                <p>
+                    My academic journey
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+                    <span>
+                        2024 – 2028
+                    </span>
+
+                    <h3>
+                        B.E. Mechanical Engineering
+                    </h3>
+
+                    <p>
+                        Sri Sairam Institute of Technology
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <span>
+                        2026
+                    </span>
+
+                    <h3>
+                        Engineering Internship
+                    </h3>
+
+                    <p>
+                        Practical exposure to FDM and SLA
+                        3D printing, machine operation,
+                        build orientation, supports,
+                        infill and manufacturing preparation.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
     </section>
 
-    <hr>
 
-    <!-- Contact -->
+
+    <!-- =========================
+         CONTACT SECTION
+    ========================= -->
+
     <section id="contact">
-        <h2>Contact</h2>
 
-        <p>Email: your-email@example.com</p>
-        <p>GitHub: <a href="#">Your GitHub</a></p>
-        <p>LinkedIn: <a href="#">Your LinkedIn</a></p>
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Let's Connect</h2>
+
+                <p>
+                    Feel free to get in touch
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <p>
+                    Interested in engineering, design,
+                    technology or collaboration?
+                    Feel free to contact me.
+                </p>
+
+
+                <div class="contact-links">
+
+                    <a href="mailto:your-email@example.com">
+                        Email
+                    </a>
+
+                    <a href="https://github.com/">
+                        GitHub
+                    </a>
+
+                    <a href="https://linkedin.com/">
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <hr>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
     <footer>
-        <p>© 2026 Harry. All rights reserved.</p>
+
+        <p>
+            © 2026 Harry. Built with HTML & CSS.
+        </p>
+
     </footer>
 
+
 </body>
+
 </html>
 ```
